@@ -7,5 +7,7 @@ This uses the following:
 - 💡ES2015+ (No need for Lodash, Ramda etc for something this small)
 - 💄 Prettier (For formatting)
 - 💬 Typescript
+- 🤡 Jest 
+- 🐙 Kent C Dodds react-testing-library 
 - Netlify
 - [SpaceX Api](https://github.com/r-spacex/SpaceX-API/blob/master/docs/v4/README.md)
