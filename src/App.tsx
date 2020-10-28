@@ -21,7 +21,6 @@ function App() {
   async function fetchData() {
     if (!didCancel) {
       try {
-        // Await the first and then the second
         const response = await fetch(url)
         const json = await response.json()
         setFlights(json)
