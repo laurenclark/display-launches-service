@@ -5,17 +5,14 @@ import TableRow from './components/TableRow'
 import Button from './components/Button'
 import LoadingSpinner from './components/LoadingSpinner'
 import Image from 'react-simple-image'
+import { format } from 'date-fns'
 import './App.scss'
 
 function App() {
   const [flights, setFlights] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
-  const dateOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }
+
   const url = `https://api.spacexdata.com/v3/launches?limit=20`
   let didCancel = false
 
@@ -108,10 +105,7 @@ function App() {
                       <TableRow
                         flightNumber={flight_number}
                         mission={mission_name}
-                        date={new Date(launch_date_utc).toLocaleDateString(
-                          'en-GB',
-                          dateOptions
-                        )}
+                        date={format(new Date(launch_date_utc), 'do MMM yyyy')}
                         rocket={rocket?.rocket_name}
                       />
                     )
