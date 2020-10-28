@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'react-simple-image'
+import { RefreshIcon } from './icons/icons'
 import Button from './Button'
 import './Header.scss'
 
@@ -18,15 +19,7 @@ function Header() {
       </span>
       <Button radius="25px 0 0 25px" padding="0.7rem 1rem">
         Reload Data
-        <Image
-          alt="Refresh Icon"
-          src="./icon/refresh.png"
-          className="icon icon__refresh"
-          srcSet={{
-            '3x': './icon/refresh@3x.png',
-            '2x': './icon/refresh@2x.png'
-          }}
-        />
+        <RefreshIcon />
       </Button>
     </header>
   )

@@ -5,6 +5,7 @@ import TableRow from './components/TableRow'
 import Button from './components/Button'
 import LoadingSpinner from './components/LoadingSpinner'
 import Image from 'react-simple-image'
+import { SelectIcon, SortIcon } from './components/icons/icons'
 import { format } from 'date-fns'
 import './App.scss'
 
@@ -12,6 +13,7 @@ function App() {
   const [flights, setFlights] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const buttonPadding = '0.8rem 1rem'
 
   const url = `https://api.spacexdata.com/v3/launches?limit=20`
   let didCancel = false
@@ -69,29 +71,11 @@ function App() {
               {flights && flights.length > 0 && (
                 <>
                   <div className="button-container">
-                    <Button padding="0.8rem 1rem">
-                      Filter by Year
-                      <Image
-                        alt="Select Icon"
-                        src="./icon/select.png"
-                        className="icon icon__select"
-                        srcSet={{
-                          '3x': './icon/select@3x.png',
-                          '2x': './icon/select@2x.png'
-                        }}
-                      />
+                    <Button padding={buttonPadding}>
+                      Filter by Year <SelectIcon />
                     </Button>
-                    <Button padding="0.8rem 1rem">
-                      Sort Descending
-                      <Image
-                        alt="Sort Icon"
-                        src="./icon/sort.png"
-                        className="icon icon__sort"
-                        srcSet={{
-                          '3x': './icon/sort@3x.png',
-                          '2x': './icon/sort@2x.png'
-                        }}
-                      />
+                    <Button padding={buttonPadding}>
+                      Sort Descending <SortIcon />
                     </Button>
                   </div>
 
