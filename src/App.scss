@@ -159,6 +159,12 @@ img:not(.icon) {
   height: 70px;
   color: $font-color;
   margin-bottom: 0.5rem;
+  &:hover {
+    transition: all 0.1s linear;
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.1),
+      1px 4px 6px 0px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
   &__number {
     display: grid;
     place-items: center;
