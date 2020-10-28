@@ -11,7 +11,12 @@ function App() {
   const [flights, setFlights] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
-  const url = `https://api.spacexdata.com/v3/launches?limit=10`
+  const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+  const url = `https://api.spacexdata.com/v3/launches?limit=20`
   let didCancel = false
 
   async function fetchData() {
@@ -103,7 +108,10 @@ function App() {
                       <TableRow
                         flightNumber={flight_number}
                         mission={mission_name}
-                        date={launch_date_utc}
+                        date={new Date(launch_date_utc).toLocaleDateString(
+                          'en-GB',
+                          dateOptions
+                        )}
                         rocket={rocket?.rocket_name}
                       />
                     )
