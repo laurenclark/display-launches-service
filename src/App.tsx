@@ -10,9 +10,12 @@ function App() {
   return (
     <>
       <Header />
-    <Layout>
-      <Header />
-    </Layout>
+      <Layout>
+        <div className="container">
+          <img src={LaunchImg} alt="A spaceship launching from a launch pad" />
+        </div>
+      </Layout>
+    </>
   )
 }
 
