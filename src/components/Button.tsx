@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Button.module.scss'
+import './Button.scss'
 
 interface Props {
   children: React.ReactNode
@@ -12,11 +12,7 @@ function Button({ padding, radius, children }: Props) {
     padding: `${padding}`,
     borderRadius: `${radius}`
   }
-  return (
-    <button className={styles.button} style={ButtonStyles}>
-      {children}
-    </button>
-  )
+  return <button style={ButtonStyles}>{children}</button>
 }
 
 export default Button
