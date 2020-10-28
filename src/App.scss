@@ -60,4 +60,49 @@ img {
   margin: 2rem auto 4rem;
   max-width: 90vw;
   width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+  grid-gap: 1rem;
+  img {
+    width: 533px;
+    margin-bottom: 1rem;
+  }
+}
+
+.table-row {
+  border-radius: 10px;
+  background: white;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 4fr 180px;
+  padding: 0.3rem;
+  border: 1px solid #ebebeb;
+  height: 60px;
+  color: $font-color;
+  margin-bottom: 0.5rem;
+  &__number {
+    display: grid;
+    place-items: center;
+    font-size: 2.3rem;
+  }
+  &__title {
+    display: grid;
+    align-content: center;
+    font-size: 1.8rem;
+  }
+  &__details {
+    text-align: right;
+    display: flex;
+    margin-right: 1rem;
+    flex-direction: column;
+    justify-content: space-around;
+    time {
+      opacity: 0.8;
+    }
+    p {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+  }
 }
