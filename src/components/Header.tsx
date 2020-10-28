@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../assets/img/spacex-logo.png'
 import Button from './Button'
-import './Header.module.scss'
+import './Header.scss'
 
 function Header() {
   return (
