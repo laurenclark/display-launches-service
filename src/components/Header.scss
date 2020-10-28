@@ -7,7 +7,7 @@ header {
     font-size: 20px;
     text-transform: uppercase;
   }
-  img {
+  img:not(.icon) {
     margin-left: 2rem;
     width: 178px;
     margin-right: -10px;

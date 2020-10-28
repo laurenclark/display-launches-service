@@ -51,7 +51,7 @@ body {
   font-size: 16x;
 }
 
-img {
+img:not(.icon) {
   max-width: 100%;
   height: auto;
 }
@@ -63,10 +63,22 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
   grid-gap: 1rem;
-  img {
+  img:not(.icon) {
     margin-top: 4rem;
     width: 533px;
     margin-bottom: 1rem;
+  }
+}
+
+.icon {
+  &__select {
+    transform: translate(7px, -2px);
+  }
+  &__sort {
+    transform: translate(5px, 2px);
+  }
+  &__refresh {
+    transform: translate(6px, 1px);
   }
 }
 
