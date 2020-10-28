@@ -1,8 +1,5 @@
 @import './assets/stylesheets/normalize';
-
-$primary-blue: #215184;
-$font-color: #545454;
-$font-family: 'Brandon Grotesque', Arial, Helvetica, sans-serif;
+@import './assets/stylesheets/variables';
 
 @font-face {
   font-family: 'Brandon Grotesque';
@@ -51,4 +48,16 @@ $font-family: 'Brandon Grotesque', Arial, Helvetica, sans-serif;
 
 body {
   font-family: $font-family;
+  font-size: 16x;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  margin: 2rem auto 4rem;
+  max-width: 90vw;
+  width: 1400px;
 }
