@@ -1,7 +1,12 @@
 import React from 'react'
+import './Main.module.scss'
 
-function Layout({ children }: any) {
-  return <div>{children}</div>
+interface Props {
+  children: JSX.Element[] | JSX.Element | string
+}
+
+function Layout({ children }: React.PropsWithChildren<Props>) {
+  return <main>{children}</main>
 }
 
 export default Layout
