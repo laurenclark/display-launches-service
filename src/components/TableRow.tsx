@@ -1,20 +1,20 @@
 import React from 'react'
 
-interface TableData {
-  index: number
-  title: string
-  date: string
-  ship: string
+type TableData = {
+  flightNumber?: number
+  mission?: string
+  date?: string
+  rocket?: string
 }
 
-function TableRow({ index, title, date, ship }: TableData) {
+function TableRow({ flightNumber, mission, date, rocket }: TableData) {
   return (
     <div className="table-row">
-      <div className="table-row__number">#{index}</div>
-      <div className="table-row__title">{title}</div>
+      <div className="table-row__number">#{flightNumber}</div>
+      <div className="table-row__title">{mission}</div>
       <div className="table-row__details">
         <time>{date}</time>
-        <p>{ship}</p>
+        <p>{rocket}</p>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Button.scss'
 
-interface Props {
+type Props = {
   children: React.ReactNode
   padding?: string
   radius?: string
