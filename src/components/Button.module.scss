@@ -1,0 +1,10 @@
+@use 'buttdsfdfons';
+@import '../assets/stylesheets/variables';
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: $primary-blue;
+  color: white;
+  cursor: pointer;
+}
