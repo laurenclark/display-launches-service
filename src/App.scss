@@ -64,7 +64,7 @@ img:not(.icon) {
   grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
   grid-gap: 1rem;
   img:not(.icon) {
-    margin-top: 4rem;
+    margin-top: 6rem;
     width: 533px;
     margin-bottom: 1rem;
   }
@@ -157,7 +157,7 @@ img:not(.icon) {
   }
   padding: 0.3rem;
   border: 1px solid #ebebeb;
-  height: 60px;
+  height: 70px;
   color: $font-color;
   margin-bottom: 0.5rem;
   &__number {
