@@ -17,7 +17,7 @@ function App() {
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
 
-  const url = `https://api.spacexdata.comsdfsd`
+  const url = `https://api.spacexdata.com/v3/launches?limit=20`
   let didCancel = false
 
   async function fetchData() {
