@@ -17,7 +17,7 @@ function Header() {
         />
         Launches
       </span>
-      <Button radius="25px 0 0 25px" padding="0.7rem 1rem">
+      <Button radius="25px 0 0 25px" padding="0.8rem 1.4rem">
         Reload Data
         <RefreshIcon />
       </Button>

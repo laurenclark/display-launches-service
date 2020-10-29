@@ -13,9 +13,11 @@ function App() {
   const [flights, setFlights] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
-  const buttonPadding = '0.8rem 1rem'
+  const buttonPadding = '0.6rem 1.6rem'
+  const errorMessage = `😨 Oh No! Something went wrong with your request. 
+                        Please try refreshing the page.`
 
-  const url = `https://api.spacexdata.com/v3/launches?limit=20`
+  const url = `https://api.spacexdata.comsdfsd`
   let didCancel = false
 
   async function fetchData() {
@@ -46,12 +48,7 @@ function App() {
       <Header />
       <Layout>
         <>
-          {isError && (
-            <div className="error">
-              😨 <strong>Oh No!</strong> <br /> Something went wrong with your
-              request. <br /> Please try refreshing the page.
-            </div>
-          )}
+          {isError && <div className="error">{errorMessage}</div>}
 
           <div className="container">
             <Image
