@@ -11,28 +11,20 @@ import { Context } from './Context'
 import './App.scss'
 
 function App() {
-  const [buttonText, setButtonText] = useState('')
-  const [isDesc, setIsDesc] = useState(true)
-  const { isError, flights, setFlights, isLoading, fetchData } = useContext(
-    Context
-  )
+  const {
+    isError,
+    flights,
+    setFlights,
+    isLoading,
+    fetchData,
+    sortFlights,
+    filterByYear,
+    buttonText
+  } = useContext(Context)
   const buttonPadding = '0.6rem 1.6rem'
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
   const url = `https://api.spacexdata.com/v3/launches`
-
-  function sortFlights() {
-    setIsDesc(!isDesc)
-    setFlights([...flights].reverse())
-  }
-
-  function filterByYear(year: string) {
-    setFlights([...flights].filter((flight) => flight.launch_year === year))
-  }
-
-  useEffect(() => {
-    setButtonText(isDesc ? 'Descending' : 'Ascending')
-  }, [isDesc])
 
   return (
     <>
@@ -84,9 +76,11 @@ function App() {
                       />
                     )
                   )}
+                  <Button clickHandler={() => fetchData(url, '')}>
+                    Load All
+                  </Button>
                 </>
               )}
-              <Button clickHandler={() => fetchData(url, '')}>Load All</Button>
             </div>
           </div>
         </>
