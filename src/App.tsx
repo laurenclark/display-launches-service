@@ -19,6 +19,7 @@ function App() {
   const buttonPadding = '0.6rem 1.6rem'
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
+  const url = `https://api.spacexdata.com/v3/launches`
 
   function sortFlights() {
     setIsDesc(!isDesc)
@@ -85,6 +86,7 @@ function App() {
                   )}
                 </>
               )}
+              <Button clickHandler={() => fetchData(url, '')}>Load All</Button>
             </div>
           </div>
         </>
