@@ -13,6 +13,8 @@ function App() {
   const [flights, setFlights] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const [buttonText, setButtonText] = useState('')
+  const [isDesc, setIsDesc] = useState(true)
   const buttonPadding = '0.6rem 1.6rem'
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
@@ -34,6 +36,15 @@ function App() {
     }
   }
 
+  function sortFlights() {
+    setIsDesc(!isDesc)
+    setFlights([...flights].reverse())
+  }
+
+  function filterByYear(year: string) {
+    setFlights([...flights].filter((flight) => flight.launch_year === year))
+  }
+
   useEffect(() => {
     fetchData()
     return () => {
@@ -42,6 +53,10 @@ function App() {
       didCancel = true
     }
   }, [])
+
+  useEffect(() => {
+    setButtonText(isDesc ? 'Descending' : 'Ascending')
+  }, [isDesc])
 
   return (
     <>
@@ -67,11 +82,13 @@ function App() {
               {flights && flights.length > 0 && (
                 <>
                   <div className="button-container">
-                    <Button padding={buttonPadding}>
+                    <Button
+                      padding={buttonPadding}
+                      clickHandler={() => filterByYear('2012')}>
                       Filter by Year <SelectIcon />
                     </Button>
-                    <Button padding={buttonPadding}>
-                      Sort Descending <SortIcon />
+                    <Button padding={buttonPadding} clickHandler={sortFlights}>
+                      Sort {buttonText} <SortIcon />
                     </Button>
                   </div>
 
