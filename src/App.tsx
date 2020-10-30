@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Header from './components/Header'
 import Layout from './layouts/Main'
 import TableRow from './components/TableRow'
@@ -7,34 +7,18 @@ import LoadingSpinner from './components/LoadingSpinner'
 import Image from 'react-simple-image'
 import { SelectIcon, SortIcon } from './components/icons/icons'
 import { format } from 'date-fns'
+import { Context } from './Context'
 import './App.scss'
 
 function App() {
-  const [flights, setFlights] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
   const [buttonText, setButtonText] = useState('')
   const [isDesc, setIsDesc] = useState(true)
+  const { isError, flights, setFlights, isLoading, fetchData } = useContext(
+    Context
+  )
   const buttonPadding = '0.6rem 1.6rem'
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
-
-  const url = `https://api.spacexdata.com/v3/launches?limit=20`
-  let didCancel = false
-
-  async function fetchData() {
-    if (!didCancel) {
-      try {
-        const response = await fetch(url)
-        const json = await response.json()
-        setFlights(json)
-      } catch (error) {
-        setIsError(true)
-        console.error(error)
-      }
-      setIsLoading(false)
-    }
-  }
 
   function sortFlights() {
     setIsDesc(!isDesc)
@@ -44,15 +28,6 @@ function App() {
   function filterByYear(year: string) {
     setFlights([...flights].filter((flight) => flight.launch_year === year))
   }
-
-  useEffect(() => {
-    fetchData()
-    return () => {
-      // If the fetch request is slow, and the component has already
-      // unmounted when the async request finishes there will be an error.
-      didCancel = true
-    }
-  }, [])
 
   useEffect(() => {
     setButtonText(isDesc ? 'Descending' : 'Ascending')
@@ -100,6 +75,7 @@ function App() {
                       launch_date_utc
                     }) => (
                       <TableRow
+                        key={flight_number}
                         flightNumber={flight_number}
                         mission={mission_name}
                         date={format(new Date(launch_date_utc), 'do MMM yyyy')}
