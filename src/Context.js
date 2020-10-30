@@ -16,11 +16,14 @@ function ContextProvider({ children }) {
   let didCancel = false
 
   async function fetchData(url = defaultUrl, queryString = defaultQuery) {
+    // Show user through UI feedback we are repopulating this list with fresh data
+    // In prod this would be coupled with a toast/success message.
+    setFlights([])
     setIsLoading(true)
     try {
       const response = await fetch(`${url}${queryString}`)
       const json = await response.json()
-      setFlights([...json])
+      setFlights((prev) => [...json])
     } catch (error) {
       setIsError(true)
       console.error(error)
