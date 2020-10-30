@@ -16,6 +16,7 @@ function ContextProvider({ children }) {
   let didCancel = false
 
   async function fetchData(url = defaultUrl, queryString = defaultQuery) {
+    setIsLoading(true)
     try {
       const response = await fetch(`${url}${queryString}`)
       const json = await response.json()
