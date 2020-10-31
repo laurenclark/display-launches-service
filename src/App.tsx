@@ -54,6 +54,7 @@ function App() {
   }
 
   useEffect(() => {
+    // It's good UX to label the action, however there should be some status maybe which says what the current state is, but this is not in the design.
     setButtonText(isDesc ? 'Descending' : 'Ascending')
     sortFlights()
   }, [selectedYear, isDesc, flights])
@@ -90,6 +91,7 @@ function App() {
                       </Button>
                     ) : (
                       <>
+                        {/* I left this inline as I doubt it will be reused. No need to make it a component - overoptimisation can cost time - refactor when necessary and ensure there is time for doing so. */}
                         <label htmlFor="yearSelect">Filter By Year</label>
                         <select
                           id="yearSelect"
