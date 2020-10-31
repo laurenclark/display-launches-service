@@ -69,8 +69,12 @@ img:not(.icon) {
   grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
   grid-gap: 1rem;
   img:not(.icon) {
-    margin: 6rem auto 1rem auto;
-    width: 533px;
+    margin: 2rem auto;
+    width: 300px;
+    @media (min-width: 769px) {
+      margin: 6rem auto 1rem auto;
+      width: 530px;
+    }
   }
 }
 
