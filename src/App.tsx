@@ -86,7 +86,9 @@ function App() {
                       <Button
                         padding={buttonPadding}
                         clickHandler={() => setIsFiltered(true)}>
-                        Filter by Year <SelectIcon />
+                        <span>
+                          Filter by Year <SelectIcon />
+                        </span>
                       </Button>
                     ) : (
                       <>
@@ -111,7 +113,9 @@ function App() {
                     <Button
                       padding={buttonPadding}
                       clickHandler={() => setIsDesc(!isDesc)}>
-                      Sort {buttonText} <SortIcon />
+                      <span>
+                        Sort {buttonText} <SortIcon />
+                      </span>
                     </Button>
                   </div>
                   {flightsView.map(
