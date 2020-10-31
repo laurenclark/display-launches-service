@@ -40,16 +40,12 @@ function App() {
   function sortFlights() {
     if (!isDesc && selectedYear) {
       setFlightsView(filterByYear(flights, selectedYear).reverse())
-      console.log('!isDesc && selectedYear')
     } else if (selectedYear) {
       setFlightsView(filterByYear(flights, selectedYear))
-      console.log('selectedYear')
     } else if (!isDesc) {
-      console.log('!isDesc')
       setFlightsView([...flights].reverse())
     } else {
       setFlightsView([...flights])
-      console.log('else')
     }
   }
 
