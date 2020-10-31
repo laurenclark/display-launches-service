@@ -4,7 +4,7 @@ import Layout from './layouts/Main'
 import TableRow from './components/TableRow'
 import Button from './components/Button'
 import LoadingSpinner from './components/LoadingSpinner'
-import Img from 'react-cool-img'
+import Image from 'react-simple-image'
 import { SelectIcon, SortIcon } from './components/icons/icons'
 import { format } from 'date-fns'
 import { Context } from './Context'
@@ -66,13 +66,13 @@ function App() {
           {isError && <div className="error">{errorMessage}</div>}
 
           <div className="container">
-            <Img
-              lazy={true}
+            <Image
               alt="Space ship launching"
               src="./img/launch-home.png"
-              srcSet="./img/launch-home.png,
-             ./img/launch-home@2x.png 2x,
-             ./img/launch-home@3x.png 3x"
+              srcSet={{
+                '2x': './img/launch-home@2x.png',
+                '3x': './img/launch-home@3x.png'
+              }}
             />
             <div>
               {isLoading && <LoadingSpinner text="Loading Flights..." />}

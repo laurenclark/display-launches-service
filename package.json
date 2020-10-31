@@ -10,7 +10,6 @@
     "date-fns": "^2.16.1",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
-    "react-cool-img": "^1.2.5",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
     "react-simple-image": "^1.0.0",
