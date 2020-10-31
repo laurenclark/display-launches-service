@@ -9,9 +9,8 @@ interface Props {
 function ContextProvider({ children }) {
   const [flights, setFlights] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [flightYears, setFlightYears] = useState([])
   const [isError, setIsError] = useState(false)
-  const [buttonText, setButtonText] = useState('')
-  const [isDesc, setIsDesc] = useState(true)
 
   const defaultUrl = `https://api.spacexdata.com/v3/launches`
   const defaultQuery = `?limit=10`
@@ -26,8 +25,8 @@ function ContextProvider({ children }) {
     try {
       const response = await fetch(`${url}${queryString}`)
       const json = await response.json()
-      setFlights((prev) => [...json])
-      await setIsDesc(true)
+      await setFlights((prev) => [...json])
+      await setFlightYears([...json].map((flight) => flight.launch_year))
     } catch (error) {
       setIsError(true)
       console.error(error)
@@ -45,19 +44,6 @@ function ContextProvider({ children }) {
     }
   }, [])
 
-  function sortFlights() {
-    setIsDesc(!isDesc)
-    setFlights([...flights].reverse())
-  }
-
-  function filterByYear(year: string) {
-    setFlights([...flights].filter((flight) => flight.launch_year === year))
-  }
-
-  useEffect(() => {
-    setButtonText(isDesc ? 'Descending' : 'Ascending')
-  }, [isDesc])
-
   return (
     <Context.Provider
       value={{
@@ -66,9 +52,7 @@ function ContextProvider({ children }) {
         isError,
         fetchData,
         setFlights,
-        buttonText,
-        sortFlights,
-        filterByYear
+        flightYears
       }}>
       {children}
     </Context.Provider>

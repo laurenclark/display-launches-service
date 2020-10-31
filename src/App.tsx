@@ -6,25 +6,75 @@ import Button from './components/Button'
 import LoadingSpinner from './components/LoadingSpinner'
 import Image from 'react-simple-image'
 import { SelectIcon, SortIcon } from './components/icons/icons'
+import Select from 'react-dropdown-select'
 import { format } from 'date-fns'
 import { Context } from './Context'
 import './App.scss'
 
 function App() {
+  const [selectedYear, setSelectedYear] = useState('')
+  const [isFiltered, setIsFiltered] = useState(false)
+  const [buttonText, setButtonText] = useState('')
+  const [isDesc, setIsDesc] = useState(true)
+  const [flightsView, setFlightsView] = useState([])
   const {
     isError,
     flights,
     setFlights,
     isLoading,
     fetchData,
-    sortFlights,
-    filterByYear,
-    buttonText
+    flightYears
   } = useContext(Context)
   const buttonPadding = '0.6rem 1.6rem'
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
   const url = `https://api.spacexdata.com/v3/launches`
+  const uniqueFlightYears = flightYears.filter(
+    (val, index, flights) => flights.indexOf(val) === index
+  )
+
+  function changeHandler(e) {
+    setSelectedYear(e.target.value)
+  }
+
+  function sortFlights() {
+    if (!isDesc && selectedYear) {
+      setFlightsView(filterByYear(flights, selectedYear).reverse())
+      console.log('!isDesc && selectedYear')
+    } else if (selectedYear) {
+      setFlightsView(filterByYear(flights, selectedYear))
+      console.log('selectedYear')
+    } else if (!isDesc) {
+      console.log('!isDesc')
+      setFlightsView([...flights].reverse())
+    } else {
+      setFlightsView([...flights])
+      console.log('else')
+    }
+  }
+
+  function filterByYear(arr: [], year: string) {
+    return [...arr].filter((flight) => flight.launch_year === year)
+  }
+
+  function renderer(arr) {
+    return arr.map(
+      ({ flight_number, mission_name, rocket, launch_date_utc }) => (
+        <TableRow
+          key={flight_number}
+          flightNumber={flight_number}
+          mission={mission_name}
+          date={format(new Date(launch_date_utc), 'do MMM yyyy')}
+          rocket={rocket?.rocket_name}
+        />
+      )
+    )
+  }
+
+  useEffect(() => {
+    setButtonText(isDesc ? 'Descending' : 'Ascending')
+    sortFlights()
+  }, [selectedYear, isDesc, flights])
 
   return (
     <>
@@ -50,32 +100,37 @@ function App() {
               {flights && flights.length > 0 && (
                 <>
                   <div className="button-container">
+                    {!isFiltered ? (
+                      <Button
+                        padding={buttonPadding}
+                        clickHandler={() => setIsFiltered(true)}>
+                        Filter by Year <SelectIcon />
+                      </Button>
+                    ) : (
+                      <>
+                        <label htmlFor="yearSelect">Filter By Year</label>
+                        <select
+                          id="yearSelect"
+                          value={selectedYear}
+                          onChange={(e) => setSelectedYear(e.target.value)}>
+                          <option value={null} disabled>
+                            Select Year
+                          </option>
+                          {uniqueFlightYears.map((year) => (
+                            <option key={year} value={year}>
+                              {year}
+                            </option>
+                          ))}
+                        </select>
+                      </>
+                    )}
                     <Button
                       padding={buttonPadding}
-                      clickHandler={() => filterByYear('2012')}>
-                      Filter by Year <SelectIcon />
-                    </Button>
-                    <Button padding={buttonPadding} clickHandler={sortFlights}>
+                      clickHandler={() => setIsDesc(!isDesc)}>
                       Sort {buttonText} <SortIcon />
                     </Button>
                   </div>
-
-                  {flights.map(
-                    ({
-                      flight_number,
-                      mission_name,
-                      rocket,
-                      launch_date_utc
-                    }) => (
-                      <TableRow
-                        key={flight_number}
-                        flightNumber={flight_number}
-                        mission={mission_name}
-                        date={format(new Date(launch_date_utc), 'do MMM yyyy')}
-                        rocket={rocket?.rocket_name}
-                      />
-                    )
-                  )}
+                  {renderer(flightsView)}
                   <Button clickHandler={() => fetchData(url, '')}>
                     Load All
                   </Button>
