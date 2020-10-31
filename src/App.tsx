@@ -53,20 +53,6 @@ function App() {
     return [...arr].filter((flight) => flight.launch_year === year)
   }
 
-  function renderer(arr) {
-    return arr.map(
-      ({ flight_number, mission_name, rocket, launch_date_utc }) => (
-        <TableRow
-          key={flight_number}
-          flightNumber={flight_number}
-          mission={mission_name}
-          date={format(new Date(launch_date_utc), 'do MMM yyyy')}
-          rocket={rocket?.rocket_name}
-        />
-      )
-    )
-  }
-
   useEffect(() => {
     setButtonText(isDesc ? 'Descending' : 'Ascending')
     sortFlights()
@@ -126,7 +112,22 @@ function App() {
                       Sort {buttonText} <SortIcon />
                     </Button>
                   </div>
-                  {renderer(flightsView)}
+                  {flightsView.map(
+                    ({
+                      flight_number,
+                      mission_name,
+                      rocket,
+                      launch_date_utc
+                    }) => (
+                      <TableRow
+                        key={flight_number}
+                        flightNumber={flight_number}
+                        mission={mission_name}
+                        date={format(new Date(launch_date_utc), 'do MMM yyyy')}
+                        rocket={rocket?.rocket_name}
+                      />
+                    )
+                  )}
                   <Button clickHandler={() => fetchData(url, '')}>
                     Load All
                   </Button>
