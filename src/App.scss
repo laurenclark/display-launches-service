@@ -175,13 +175,13 @@ label {
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1),
     1px 2px 3px 0px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
   @media (min-width: 760px) {
     grid-template-columns: 1fr 4fr 180px;
   }
-  padding: 0.3rem;
+  padding: 0.5rem;
   border: 1px solid #ebebeb;
-  height: 70px;
+  height: 60px;
   color: $font-color;
   margin-bottom: 0.5rem;
   &:hover {
@@ -192,9 +192,12 @@ label {
   }
   &__number {
     display: grid;
-    place-items: center;
     font-size: 2.3rem;
     font-weight: 500;
+    align-items: center;
+    @media (min-width: 760px) {
+      place-items: center;
+    }
   }
   &__title {
     display: grid;
