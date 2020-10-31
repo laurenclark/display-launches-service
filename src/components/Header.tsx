@@ -11,13 +11,15 @@ function Header() {
   return (
     <header>
       <span>
-        <Image
-          alt="SpaceX Launches Logo"
-          src="./img/spacex-logo.png"
-          srcSet={{
-            '3x': './img/spacex-logo.png'
-          }}
-        />
+        <a href="/">
+          <Image
+            alt="SpaceX Launches Logo"
+            src="./img/spacex-logo.png"
+            srcSet={{
+              '3x': './img/spacex-logo.png'
+            }}
+          />
+        </a>
         Launches
       </span>
       <Button
