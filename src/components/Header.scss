@@ -9,10 +9,14 @@ header {
   }
   img:not(.icon) {
     width: 178px;
-    margin: 0.55rem -10px 0 2rem;
+    margin: 0.5rem -10px 0 2rem;
   }
   button {
     position: absolute;
     right: 0;
+    top: 4rem;
+    @media (min-width: 769px) {
+      top: 1rem;
+    }
   }
 }
