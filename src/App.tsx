@@ -99,6 +99,7 @@ function App() {
                           <option value={null} disabled>
                             Select Year
                           </option>
+                          <option value={''}>All</option>
                           {uniqueFlightYears.map((year) => (
                             <option key={year} value={year}>
                               {year}
