@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Image from 'react-simple-image'
+import Img from 'react-cool-img'
 import { RefreshIcon } from './icons/icons'
 import Button from './Button'
 import { Context } from '../Context'
@@ -12,12 +12,10 @@ function Header() {
     <header>
       <span>
         <a href="/">
-          <Image
+          <Img
+            lazy={true}
             alt="SpaceX Launches Logo"
             src="./img/spacex-logo.png"
-            srcSet={{
-              '3x': './img/spacex-logo.png'
-            }}
           />
         </a>
         Launches

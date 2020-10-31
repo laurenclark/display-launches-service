@@ -1,44 +1,50 @@
 import React from 'react'
-import Image from 'react-simple-image'
+import Img from 'react-cool-img'
 
 export function SelectIcon() {
   return (
-    <Image
+    <Img
       alt="Select Icon"
       src="../../icon/select.png"
       className="icon icon__select"
-      srcSet={{
-        '3x': '../../icon/select@3x.png',
-        '2x': '../../icon/select@2x.png'
-      }}
+      lazy={true}
+      srcSet="
+        ../../icon/select.png 
+        ../../icon/select@2x.png x2,
+        ../../icon/select@3x.png x3
+      "
     />
   )
 }
 
 export function SortIcon() {
   return (
-    <Image
+    <Img
       alt="sort Icon"
       src="../../icon/sort.png"
       className="icon icon__sort"
-      srcSet={{
-        '3x': '../../icon/sort@3x.png',
-        '2x': '../../icon/sort@2x.png'
-      }}
+      lazy={true}
+      srcSet="
+        ../../icon/sort.png 
+        ../../icon/sort@2x.png x2,
+        ../../icon/sort@3x.png x3
+      "
     />
   )
 }
 
 export function RefreshIcon() {
   return (
-    <Image
+    <Img
       alt="Refresh Icon"
       src="../../icon/refresh.png"
       className="icon icon__refresh"
-      srcSet={{
-        '3x': '../../icon/refresh@3x.png',
-        '2x': '../../icon/refresh@2x.png'
-      }}
+      lazy={true}
+      srcSet="
+        ../../icon/refresh.png 
+        ../../icon/refresh@2x.png x2,
+        ../../icon/refresh@3x.png x3
+      "
     />
   )
 }
