@@ -6,4 +6,7 @@ button {
   background: $primary-blue;
   color: white;
   cursor: pointer;
+  & ~ button {
+    margin-left: 10px;
+  }
 }

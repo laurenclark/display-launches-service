@@ -12,6 +12,7 @@ import './App.scss'
 
 function App() {
   const [selectedYear, setSelectedYear] = useState('')
+  const [counter, setCounter] = useState(1)
   const [isFiltered, setIsFiltered] = useState(false)
   const [buttonText, setButtonText] = useState('')
   const [isDesc, setIsDesc] = useState(true)
@@ -28,6 +29,7 @@ function App() {
   const errorMessage = `😨 Oh No! Something went wrong with your request. 
                         Please try refreshing the page.`
   const url = `https://api.spacexdata.com/v3/launches`
+  const perPage = 10
   const uniqueFlightYears = flightYears.filter(
     (val, index, flights) => flights.indexOf(val) === index
   )
@@ -53,7 +55,6 @@ function App() {
   }
 
   useEffect(() => {
-    // It's good UX to label the action, however there should be some status maybe which says what the current state is, but this is not in the design.
     setButtonText(isDesc ? 'Descending' : 'Ascending')
     sortFlights()
   }, [selectedYear, isDesc, flights])
@@ -136,6 +137,15 @@ function App() {
                   )}
                   <Button clickHandler={() => fetchData(url, '')}>
                     Load All
+                  </Button>
+                  <Button
+                    clickHandler={() => {
+                      return (
+                        fetchData(url, `?limit=${perPage + counter * 10}`),
+                        setCounter(counter + 1)
+                      )
+                    }}>
+                    Load Next {perPage}
                   </Button>
                 </>
               )}
