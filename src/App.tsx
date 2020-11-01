@@ -30,10 +30,7 @@ function App() {
                         Please try refreshing the page.`
   const url = `https://api.spacexdata.com/v3/launches`
   const perPage = 10
-  const uniqueFlightYears = flightYears.filter(
-    (val, index, flights) => flights.indexOf(val) === index
-  )
-
+  const uniqueFlightYears = [...new Set(flightYears)]
   function changeHandler(e) {
     setSelectedYear(e.target.value)
   }
@@ -80,7 +77,7 @@ function App() {
               {!isLoading && flights.length === 0 && (
                 <div className="error">No Flight Data</div>
               )}
-              {flights && flights.length > 0 && (
+              {!isLoading && flights && flights.length > 0 && (
                 <>
                   <div className="button-container">
                     {!isFiltered ? (
