@@ -100,6 +100,17 @@ img:not(.icon) {
   margin-bottom: 1rem;
 }
 
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+@for $i from 1 through 999 {
+  .dataContainer div:nth-child(#{$i}) {
+    animation-delay: $i * 0.05s;
+  }
+}
+
 .error {
   height: 100vh;
   display: grid;
@@ -130,7 +141,7 @@ img:not(.icon) {
       border-radius: 50%;
       animation: ripple 1.3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
       &:nth-child(2) {
-        animation-delay: -0.5s;
+        animation-delay: -0.3s;
       }
     }
   }
@@ -152,24 +163,13 @@ label {
   place-items: center;
 }
 
-@keyframes ripple {
-  0% {
-    top: 70px;
-    left: 72px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: -1px;
-    left: -1px;
-    width: 144px;
-    height: 144px;
-    opacity: 0;
-  }
-}
-
 .table-row {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  // animation-direction: normal;
+  // animation-timing-function: linear;
   border-radius: 10px;
   background: white;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1),
@@ -222,5 +222,33 @@ label {
       font-size: 1.3em;
       font-weight: 700;
     }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    top: 70px;
+    left: 72px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 144px;
+    height: 144px;
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
