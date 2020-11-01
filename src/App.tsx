@@ -119,22 +119,27 @@ function App() {
                       </span>
                     </Button>
                   </div>
-                  {flightsView.map(
-                    ({
-                      flight_number,
-                      mission_name,
-                      rocket,
-                      launch_date_utc
-                    }) => (
-                      <TableRow
-                        key={flight_number}
-                        flightNumber={flight_number}
-                        mission={mission_name}
-                        date={format(new Date(launch_date_utc), 'do MMM yyyy')}
-                        rocket={rocket?.rocket_name}
-                      />
-                    )
-                  )}
+                  <div className="dataContainer">
+                    {flightsView.map(
+                      ({
+                        flight_number,
+                        mission_name,
+                        rocket,
+                        launch_date_utc
+                      }) => (
+                        <TableRow
+                          key={flight_number}
+                          flightNumber={flight_number}
+                          mission={mission_name}
+                          date={format(
+                            new Date(launch_date_utc),
+                            'do MMM yyyy'
+                          )}
+                          rocket={rocket?.rocket_name}
+                        />
+                      )
+                    )}
+                  </div>
                   <Button clickHandler={() => fetchData(url, '')}>
                     Load All
                   </Button>
@@ -146,6 +151,17 @@ function App() {
                       )
                     }}>
                     Load Next {perPage}
+                  </Button>
+                  <Button
+                    clickHandler={() => {
+                      return (
+                        fetchData(url, `?limit=${perPage}`),
+                        setIsFiltered(false),
+                        setIsDesc(true),
+                        setSelectedYear('')
+                      )
+                    }}>
+                    Reset
                   </Button>
                 </>
               )}
