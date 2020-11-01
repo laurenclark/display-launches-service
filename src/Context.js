@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
+const defaultVal = null
+const Context = React.createContext(defaultVal)
 
-const Context = React.createContext()
+interface Props {
+  children: JSX.Element[] | JSX.Element | string;
+}
 
 function ContextProvider({ children }) {
   const [flights, setFlights] = useState([])
