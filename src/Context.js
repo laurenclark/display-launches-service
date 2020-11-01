@@ -18,9 +18,6 @@ function ContextProvider({ children }) {
   let didCancel = false
 
   async function fetchData(url = defaultUrl, queryString = defaultQuery) {
-    // Show user through UI feedback we are repopulating this list with fresh data
-    // In prod this would be coupled with a toast/success message.
-    setFlights([])
     setIsLoading(true)
     try {
       const response = await fetch(`${url}${queryString}`)
@@ -39,7 +36,7 @@ function ContextProvider({ children }) {
     }
     return () => {
       // If the fetch request is slow, and the component has already
-      // unmounted when the async request finishes there will be an error.
+      // unmounted when the async request finishes there could be an error.
       didCancel = true
     }
   }, [])
