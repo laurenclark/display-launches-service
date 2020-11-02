@@ -31,6 +31,7 @@ function App() {
   const url = `https://api.spacexdata.com/v3/launches`
   const perPage = 10
   const uniqueFlightYears = [...new Set(flightYears)]
+
   function changeHandler(e) {
     setSelectedYear(e.target.value)
   }
