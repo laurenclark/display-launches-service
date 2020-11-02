@@ -31,7 +31,6 @@ function App() {
   const url = `https://api.spacexdata.com/v3/launches`
   const perPage = 10
   const uniqueFlightYears = [...new Set(flightYears)]
-
   function changeHandler(e) {
     setSelectedYear(e.target.value)
   }
@@ -57,13 +56,25 @@ function App() {
     sortFlights()
   }, [selectedYear, isDesc, flights])
 
+  if (isError) {
+    return (
+      <>
+        <Header />
+        <Layout>
+          <div className="error">{errorMessage}</div>
+        </Layout>
+      </>
+    )
+  }
+
   return (
     <>
       <Header />
       <Layout>
         <>
-          {isError && <div className="error">{errorMessage}</div>}
-
+          {!isLoading && !isError && flights.length === 0 && (
+            <div className="error">No Flight Data</div>
+          )}
           <div className="container">
             <Image
               alt="Space ship launching"
@@ -75,9 +86,7 @@ function App() {
             />
             <div>
               {isLoading && <LoadingSpinner text="Loading Flights..." />}
-              {!isLoading && flights.length === 0 && (
-                <div className="error">No Flight Data</div>
-              )}
+
               {!isLoading && flights && flights.length > 0 && (
                 <>
                   <div className="button-container">
