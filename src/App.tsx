@@ -165,6 +165,13 @@ function App() {
             </div>
           </div>
         </>
+        <span
+          style={{ textAlign: 'center', display: 'block', padding: '40px' }}>
+          Made with ❤ by&nbsp;
+          <a href="https://github.com/laurenclark/display-launches-service">
+            laurenclark
+          </a>
+        </span>
       </Layout>
     </>
   )
